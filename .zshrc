@@ -19,6 +19,7 @@ alias zshconfig="nvim ~/.zshrc"
 alias venv="source .venv/bin/activate"
 alias pip="pip3"
 alias v="nvim"
+alias t="~/scripts/tmux-sessionizer"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
