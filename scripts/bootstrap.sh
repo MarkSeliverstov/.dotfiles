@@ -31,8 +31,11 @@ link_file () {
     local src=$1 dst=$2
     if [ -e $dst ]
     then
-        read -p "Rewrite $dst? [y/n]" -n 1 action
-        [ "$action" == "y" ] && rm -rf $dst || return
+        local message="File $dst already exists. Do you want to overwrite it? [y/n] "
+        info "$message"
+        read -n 1 action
+        [ "$action" == "y" ] && rm -rf $dst || echo '' && continue
+        echo ''
     fi
     ln -s $src $dst
 }
@@ -42,7 +45,7 @@ setup_homebrew() {
     # If we're on a Mac, let's install and setup homebrew.
     if [ "$(uname -s)" == "Darwin" ]
     then
-      info "installing dependencies"
+      info "installing homebrew and dependencies"
       if source $DOTFILES_ROOT/homebrew/install.sh | while read -r data; do info "$data"; done
       then
         success "dependencies installed"
@@ -91,7 +94,7 @@ install_oh_my_zsh() {
       return
     fi
 
-    if git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
+    if git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh 2>&1 | while read -r data; do info "$data"; done
     then
       success 'oh-my-zsh installed'
       install_oh_my_zsh_plugins
@@ -105,35 +108,30 @@ install_oh_my_zsh_plugins() {
     info 'installing oh-my-zsh plugins'
     if [ -d "$HOME/.oh-my-zsh/plugins" ]; then
         plugins=(
-            zsh-syntax-highlighting 
+            zsh-syntax-highlighting
             zsh-autosuggestions 
             zsh-completions
         )
+
         for plugin in "${plugins[@]}"; do
             info "installing $plugin"
-            git clone https://github.com/zsh-users/$plugin ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$plugin
+            if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/$plugin" ]; then
+                success "$plugin already installed"
+                continue
+            fi
+            git clone https://github.com/zsh-users/$plugin ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$plugin 2>&1 | while read -r data; do info "$data"; done
+            success "$plugin installed"
         done
-        info 'Installing powerlevel10k theme'
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-        success 'oh-my-zsh plugins installed'
-    else
-        fail 'error installing oh-my-zsh plugins'
-    fi
-}
 
-insatll_fonts() {
-    info 'installing fonts'
-    if [ -d "$HOME/Library/Fonts" ]
-    then
-      info 'installing MesloLGS NF font'
-      if cp $DOTFILES_ROOT/fonts/MesloLGS\ NF/*.ttf $HOME/Library/Fonts
-      then
-        success 'MesloLGS NF font installed'
-      else
-        fail 'error installing MesloLGS NF font'
-      fi
+        info 'Installing powerlevel10k theme'
+        if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes" ]; then
+            success 'powerlevel10k theme already installed'
+        else
+            git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k 2>&1 | while read -r data; do info "$data"; done
+            success 'oh-my-zsh plugins installed'
+        fi
     else
-      fail 'error installing fonts'
+        fail "$HOME/.oh-my-zsh/plugins not found, error installing plugins"
     fi
 }
 
