@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
-# bootstrap installs things. 
-# !Run in dotfiles director!
+# bootstrap installs things.
 
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
@@ -28,22 +27,16 @@ fail () {
   exit
 }
 
-
 link_file () {
     local src=$1 dst=$2
-    if [ -d $dst ] || [ -f $dst ]
+    if [ -e $dst ]
     then
-        info "Rewrite $dst? [y/n]"
-        read -n 1 action
-        if [ "$action" == "y" ]
-        then
-            rm -rf $dst
-        else
-            return
-        fi
+        read -p "Rewrite $dst? [y/n]" -n 1 action
+        [ "$action" == "y" ] && rm -rf $dst || return
     fi
     ln -s $src $dst
 }
+
 
 setup_homebrew() {
     # If we're on a Mac, let's install and setup homebrew.
@@ -75,13 +68,18 @@ setup_macos() {
 
 install_dotfiles () {
     info 'Linking dotiles'
-    link_file $DOTFILES_ROOT/.config $HOME/.config
-    link_file $DOTFILES_ROOT/bin $HOME/bin
-    link_file $DOTFILES_ROOT/.tmux.conf $HOME/.tmux.conf
-    link_file $DOTFILES_ROOT/.zshrc $HOME/.zshrc
-    link_file $DOTFILES_ROOT/.hushlogin $HOME/.hushlogin
+    dotfiles=(
+        .config bin 
+        .tmux.conf 
+        .zshrc 
+        .hushlogin
+    )
+    for file in "${dotfiles[@]}"; do
+        link_file "$DOTFILES_ROOT/$file" "$HOME/$file"
+    done
     success 'dotfiles linked'
 }
+
 
 install_oh_my_zsh() {
     info 'installing oh-my-zsh'
@@ -105,17 +103,19 @@ install_oh_my_zsh() {
 
 install_oh_my_zsh_plugins() {
     info 'installing oh-my-zsh plugins'
-    if [ -d "$HOME/.oh-my-zsh/plugins" ] # check if plugins directory exists
-        info 'installing zsh-syntax-highlighting'
-        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-        info 'installing zsh-autosuggestions'
-        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-        info 'installing zsh-completions'
-        git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+    if [ -d "$HOME/.oh-my-zsh/plugins" ]; then
+        plugins=(
+            zsh-syntax-highlighting 
+            zsh-autosuggestions 
+            zsh-completions
+        )
+        for plugin in "${plugins[@]}"; do
+            info "installing $plugin"
+            git clone https://github.com/zsh-users/$plugin ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$plugin
+        done
         info 'Installing powerlevel10k theme'
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    then
-      success 'oh-my-zsh plugins installed'
+        success 'oh-my-zsh plugins installed'
     else
         fail 'error installing oh-my-zsh plugins'
     fi
