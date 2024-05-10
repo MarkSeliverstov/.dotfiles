@@ -25,8 +25,24 @@ alias dotfiles="cd ~/dotfiles"
 alias venv="source .venv/bin/activate"
 alias v="nvim"
 alias pip="pip3"
+alias python="python3"
 alias t="~/scripts/tmux-sessionizer"
 alias zshconfig="nvim ~/.zshrc"
+
+# Poetry variables
+export POETRY_VIRTUALENVS_IN_PROJECT=true
+export POETRY_VIRTUALENVS_OPTIONS_ALWAYS_COPY=true
+
+# Functions
+
+# Git checkout with fzf (all branches, sorting)
+gch() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
