@@ -20,7 +20,7 @@ chflags nohidden ~/Library
 defaults write NSGlobalDomain KeyRepeat -int 1
 
 # Change the Caps Lock key to act as the Control key
-hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x70000006e},{"HIDKeyboardModifierMappingSrc":0x7000000e0,"HIDKeyboardModifierMappingDst":0x7000000e4}]}' 
+# hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000039,"HIDKeyboardModifierMappingDst":0x70000006e},{"HIDKeyboardModifierMappingSrc":0x7000000e0,"HIDKeyboardModifierMappingDst":0x7000000e4}]}'
 
 # Normal font in Alacrity terminal
 defaults write -g AppleFontSmoothing -int 0
