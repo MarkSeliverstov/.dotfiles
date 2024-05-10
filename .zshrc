@@ -10,7 +10,13 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:plugins:nvm' lazy yes # for lazy loading so terrible nvm...
-plugins=(nvm git zsh-autosuggestions zsh-syntax-highlighting poetry)
+plugins=(
+    git 
+    zsh-autosuggestions 
+    zsh-syntax-highlighting 
+    nvm 
+    poetry
+)
 
 source $ZSH/oh-my-zsh.sh
 
