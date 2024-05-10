@@ -11,6 +11,7 @@ here and it will apply to your system (your symlinks).
 - `./bin`: -> `~/.bin` - Anything in bin/ will get added to your $PATH and be made available everywhere.
 - `.zshrc`: -> `~/.zshrc`
 - `.tmux.conf`: -> `~/.tmux.conf`
+- `.hushlogin`: -> `~/.hushlogin` - Hide login message in terminal
 
 ## Install
 

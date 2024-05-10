@@ -79,6 +79,7 @@ install_dotfiles () {
     link_file $DOTFILES_ROOT/bin $HOME/bin
     link_file $DOTFILES_ROOT/.tmux.conf $HOME/.tmux.conf
     link_file $DOTFILES_ROOT/.zshrc $HOME/.zshrc
+    link_file $DOTFILES_ROOT/.hushlogin $HOME/.hushlogin
     success 'dotfiles linked'
 }
 
