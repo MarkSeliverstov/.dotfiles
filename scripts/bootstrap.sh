@@ -28,6 +28,23 @@ fail () {
   exit
 }
 
+
+link_file () {
+    local src=$1 dst=$2
+    if [ -d $dst ] || [ -f $dst ]
+    then
+        info "Rewrite $dst? [y/n]"
+        read -n 1 action
+        if [ "$action" == "y" ]
+        then
+            rm -rf $dst
+        else
+            return
+        fi
+    fi
+    ln -s $src $dst
+}
+
 setup_homebrew() {
     # If we're on a Mac, let's install and setup homebrew.
     if [ "$(uname -s)" == "Darwin" ]
@@ -56,23 +73,13 @@ setup_macos() {
     fi
 }
 
-try_copy() {
-    source=$1
-    destination=$2
-  if cp -r $source $destination
-  then
-    success 'config files installed'
-  else
-    fail 'error installing config files'
-  fi
-}
-
 install_dotfiles () {
-    info 'installing dotfiles'
-    try_copy $DOTFILES_ROOT/.config $HOME
-    try_copy $DOTFILES_ROOT/bin $HOME
-    try_copy $DOTFILES_ROOT/.tmux.conf $HOME
-    try_copy $DOTFILES_ROOT/.zshrc $HOME
+    info 'Linking dotiles'
+    link_file $DOTFILES_ROOT/.config $HOME/.config
+    link_file $DOTFILES_ROOT/bin $HOME/bin
+    link_file $DOTFILES_ROOT/.tmux.conf $HOME/.tmux.conf
+    link_file $DOTFILES_ROOT/.zshrc $HOME/.zshrc
+    success 'dotfiles linked'
 }
 
 install_oh_my_zsh() {
@@ -129,11 +136,12 @@ insatll_fonts() {
     fi
 }
 
-# setup_macos
-# setup_homebrew
+setup_macos
+setup_homebrew
 install_oh_my_zsh
-# install_dotfiles
-info 'fot applying all changes restart terminal'
+install_dotfiles
+
+success 'Finished! For changes to take effect, restart your terminal'
 
 echo ''
 echo '  All installed!'
