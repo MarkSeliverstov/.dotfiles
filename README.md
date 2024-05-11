@@ -10,15 +10,17 @@ symlinks.
 
 - `./.config`: -> `~/.config` - Contains **Alacrity**, **nvim** configs
 - `./bin`: -> `~/.bin` - Anything in bin/ will get added to your $PATH and be made available everywhere.
-- `.zshrc`: -> `~/.zshrc` - Zsh config
+- `.tmux`: -> `~/.tmux` - Tmux plugins
 - `.tmux.conf`: -> `~/.tmux.conf` - Tmux config
+- `.zshrc`: -> `~/.zshrc` - Zsh config
 - `.hushlogin`: -> `~/.hushlogin` - Hide login message in terminal
 - `.gitconfig`: -> `~/.gitconfig` - Git config
 
 ## Install
 
 ```terminal
-git clone git@github.com:MarkSeliverstov/.dotfiles.git
+# Clone the repo with submodules
+git clone --recurse-submodules git@github.com:MarkSeliverstov/.dotfiles.git
 cd .dotfiles
 chmod +x ./scripts/bootstrap.sh
 ./scripts/bootstrap.sh
@@ -30,7 +32,7 @@ chmod +x ./scripts/bootstrap.sh
 - Install **Homebrew** and **Homebrew Casks** (tmux, fzf, zsh, nvim, alacrity ...)
 - Set up **zsh**, **oh-my-zsh** and **powerlevel10k**
 - Set up **nvim**
-- Set up **tmux**
+- Set up **tmux** and **tmux plugins** (you will need to run `tmux source ~/.tmux.conf` and `prefix + I` to install plugins)
 - Set up **Alacritty**
 - Downloand and setup **fonts** (JetBrainsMono, NerdFonts)
 - Also in `./rectangle` you can find config for **Rectangle** app

@@ -74,6 +74,7 @@ install_dotfiles () {
     dotfiles=(
         bin
         .config
+        .tmux
         .tmux.conf
         .zshrc
         .hushlogin
@@ -143,6 +144,7 @@ install_oh_my_zsh
 install_dotfiles
 
 success "Finished! For changes to take effect, run 'source ~/.zshrc'"
+info "Also you need to run 'tmux source-file ~/.tmux.conf' and 'prefix + I' to install tmux plugins"
 
 echo ""
 echo "  All installed!"
