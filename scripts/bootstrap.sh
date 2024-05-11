@@ -79,6 +79,7 @@ install_dotfiles () {
         .zshrc
         .hushlogin
         .gitconfig
+        .gitignore_global
     )
     for file in "${dotfiles[@]}"; do
         link_file "$DOTFILES_ROOT/$file" "$HOME/$file"

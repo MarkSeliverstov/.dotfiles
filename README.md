@@ -17,6 +17,7 @@ symlinks.
 - `.zshrc`: -> `~/.zshrc` - Zsh config
 - `.hushlogin`: -> `~/.hushlogin` - Hide login message in terminal
 - `.gitconfig`: -> `~/.gitconfig` - Git config
+- `.gitignore_global`: -> `~/.gitignore_global` - Git ignore
 
 ## Install
 
