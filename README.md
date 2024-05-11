@@ -2,6 +2,8 @@
 
 `macOS` | `homebrew` | `alacritty` | `zsh` | `tmux` | `nvim` | `git` | `fonts`
 
+![Screenshot](./assets/running-example.png)
+
 ## Symlinks
 
 Setting up your environment this way is really amazing. You simply tweak the
