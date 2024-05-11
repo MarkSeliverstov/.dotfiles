@@ -72,10 +72,12 @@ setup_macos() {
 install_dotfiles () {
     info "Linking dotiles"
     dotfiles=(
-        .config bin 
-        .tmux.conf 
-        .zshrc 
+        bin
+        .config
+        .tmux.conf
+        .zshrc
         .hushlogin
+        .gitconfig
     )
     for file in "${dotfiles[@]}"; do
         link_file "$DOTFILES_ROOT/$file" "$HOME/$file"

@@ -1,23 +1,25 @@
-# Mark's Dotfiles
+# Ma:construction:k's Dotfiles
 
-`macOS` | `alacritty` | `zsh` | `tmux` | `nvim` | `homebrew`
+`macOS` | `homebrew` | `alacritty` | `zsh` | `tmux` | `nvim` | `git` | `fonts`
 
 ## Symlinks
 
-By the way it is incredible way to setup enviroment. You can just edit configs
-here and it will apply to your system (your symlinks).
+Setting up your environment this way is really amazing. You simply tweak the
+configurations here, and voila, they seamlessly apply to your entire system via
+symlinks.
 
 - `./.config`: -> `~/.config` - Contains **Alacrity**, **nvim** configs
 - `./bin`: -> `~/.bin` - Anything in bin/ will get added to your $PATH and be made available everywhere.
-- `.zshrc`: -> `~/.zshrc`
-- `.tmux.conf`: -> `~/.tmux.conf`
+- `.zshrc`: -> `~/.zshrc` - Zsh config
+- `.tmux.conf`: -> `~/.tmux.conf` - Tmux config
 - `.hushlogin`: -> `~/.hushlogin` - Hide login message in terminal
+- `.gitconfig`: -> `~/.gitconfig` - Git config
 
 ## Install
 
 ```terminal
-git clone
-cd dotfiles
+git clone git@github.com:MarkSeliverstov/.dotfiles.git
+cd .dotfiles
 chmod +x ./scripts/bootstrap.sh
 ./scripts/bootstrap.sh
 ```
