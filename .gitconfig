@@ -1,2 +1,2 @@
 [core]
-	excludesFile = DS_store
+	excludesFile = .DS_Store
