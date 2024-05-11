@@ -1,4 +1,4 @@
-# Ma:construction:k's Dotfiles
+# Ma :construction: k's Dotfiles
 
 `macOS` | `homebrew` | `alacritty` | `zsh` | `tmux` | `nvim` | `git` | `fonts`
 
