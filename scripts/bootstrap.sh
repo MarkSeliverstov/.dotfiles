@@ -7,7 +7,7 @@ DOTFILES_ROOT=$(pwd -P)
 
 set -e
 
-echo ''
+echo ""
 
 info () {
   printf "\r  [ \033[00;34m..\033[0m ] $1\n"
@@ -23,7 +23,7 @@ success () {
 
 fail () {
   printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
-  echo ''
+  echo ""
   exit
 }
 
@@ -34,15 +34,15 @@ link_file () {
         local message="File $dst already exists. Do you want to overwrite it? [y/n] "
         info "$message"
         read -n 1 action
-        [ "$action" == "y" ] && rm -rf $dst || echo '' && continue
-        echo ''
+        [ "$action" == "y" ] && rm -rf $dst || echo "" && continue
+        echo ""
     fi
     ln -s $src $dst
 }
 
 
 setup_homebrew() {
-    # If we're on a Mac, let's install and setup homebrew.
+    # If we"re on a Mac, let"s install and setup homebrew.
     if [ "$(uname -s)" == "Darwin" ]
     then
       info "installing homebrew and dependencies"
@@ -56,7 +56,7 @@ setup_homebrew() {
 }
 
 setup_macos() {
-    # If we're on a Mac, let's install and setup it
+    # If we"re on a Mac, let"s install and setup it
     if [ "$(uname -s)" == "Darwin" ]
     then
       info "Setup macOS defaults"
@@ -70,7 +70,7 @@ setup_macos() {
 }
 
 install_dotfiles () {
-    info 'Linking dotiles'
+    info "Linking dotiles"
     dotfiles=(
         .config bin 
         .tmux.conf 
@@ -80,32 +80,32 @@ install_dotfiles () {
     for file in "${dotfiles[@]}"; do
         link_file "$DOTFILES_ROOT/$file" "$HOME/$file"
     done
-    success 'dotfiles linked'
+    success "dotfiles linked"
 }
 
 
 install_oh_my_zsh() {
-    info 'installing oh-my-zsh'
+    info "installing oh-my-zsh"
     # check if oh-my-zsh is installed
     if [ -d "$HOME/.oh-my-zsh" ]
     then
-      success 'oh-my-zsh already installed'
+      success "oh-my-zsh already installed"
       install_oh_my_zsh_plugins
       return
     fi
 
     if git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh 2>&1 | while read -r data; do info "$data"; done
     then
-      success 'oh-my-zsh installed'
+      success "oh-my-zsh installed"
       install_oh_my_zsh_plugins
     else
-      fail 'error installing oh-my-zsh'
+      fail "error installing oh-my-zsh"
     fi
 
 }
 
 install_oh_my_zsh_plugins() {
-    info 'installing oh-my-zsh plugins'
+    info "installing oh-my-zsh plugins"
     if [ -d "$HOME/.oh-my-zsh/plugins" ]; then
         plugins=(
             zsh-syntax-highlighting
@@ -123,12 +123,12 @@ install_oh_my_zsh_plugins() {
             success "$plugin installed"
         done
 
-        info 'Installing powerlevel10k theme'
+        info "Installing powerlevel10k theme"
         if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes" ]; then
-            success 'powerlevel10k theme already installed'
+            success "powerlevel10k theme already installed"
         else
             git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k 2>&1 | while read -r data; do info "$data"; done
-            success 'oh-my-zsh plugins installed'
+            success "oh-my-zsh plugins installed"
         fi
     else
         fail "$HOME/.oh-my-zsh/plugins not found, error installing plugins"
@@ -140,8 +140,8 @@ setup_homebrew
 install_oh_my_zsh
 install_dotfiles
 
-success 'Finished! For changes to take effect, restart your terminal'
+success "Finished! For changes to take effect, run 'source ~/.zshrc'"
 
-echo ''
-echo '  All installed!'
+echo ""
+echo "  All installed!"
 
