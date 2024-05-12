@@ -31,8 +31,10 @@ chmod +x ./scripts/bootstrap.sh
 
 ### What it will do
 
+- Ask you if you want to install each part of the setup
 - Set up macOS defaults
 - Install **Homebrew** and **Homebrew Casks** (tmux, fzf, zsh, nvim, alacrity ...)
+  - Script will ask you if you want to install apps from `./homebrew/Brewfile`
 - Set up **zsh**, **oh-my-zsh** and **powerlevel10k**
 - Set up **nvim**
 - Set up **tmux** and **tmux plugins** (you will need to run `tmux source ~/.tmux.conf` and `prefix + I` to install plugins)

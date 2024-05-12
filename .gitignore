@@ -1,2 +1,5 @@
 github-copilot
 .tmux/plugins
+Brewfile.lock.json
+.DS_Store
+
