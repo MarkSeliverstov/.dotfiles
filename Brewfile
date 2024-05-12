@@ -4,14 +4,31 @@ cask_args appdir: "/Applications"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 
+# GUI applications
+cask "raycast"
+cask "google-drive"
+cask "telegram"
+cask "docker"
+cask "spotify"
+
 # Basic
 brew "git"
 brew "wget"
 brew "tree"
-
-# Fonts
-cask "font-hack-nerd-font"
-cask "font-jetbrains-mono-nerd-font"
+# CLI tools
+brew "tmux"
+brew "lazydocker"
+brew "lazygit"
+brew "neovim"
+brew "fzf"
+brew "k9s"
+brew "kubeseal"
+brew "rabbitmq"
+brew "btop"
+brew "task"
+cask "google-cloud-sdk"
+# other
+brew "postgresql@14"
 
 # Node shit
 brew "node"
@@ -19,32 +36,9 @@ brew "npm"
 brew "nvm"
 brew "yarn"
 
-# Urils
-brew "task"
-brew "cmatrix"
-
-# CLI tools
-brew "tmux"
-brew "fzf"
-brew "neovim"
-brew "htop"
-brew "btop"
-brew "lazydocker"
-brew "lazygit"
-brew "k9s"
-brew "kubeseal"
-brew "rabbitmq"
-
 # python
 brew "pipx"
 brew "python@3.12"
-brew "python@3.11"
-brew "python@3.10"
-
-# other
-brew "postgresql@14"
-cask "google-cloud-sdk"
-
 
 # C/C++
 brew "gcc"
@@ -54,8 +48,10 @@ brew "cmake"
 # brew "log4cxx"
 # brew "spdlog"
 
-# GUI apps
-cask "raycast"
-cask "google-drive"
-cask "telegram"
-cask "docker"
+# FUN
+brew "cmatrix"
+
+# Fonts
+cask "font-hack-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+
