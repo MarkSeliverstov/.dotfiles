@@ -24,14 +24,17 @@ source $ZSH/oh-my-zsh.sh
 alias dotfiles="cd ~/dotfiles"
 alias venv="source .venv/bin/activate"
 alias v="nvim"
-alias pip="pip3"
-alias python="python3"
+alias pip="pip3.10"
+alias python="python3.10"
 alias t="~/scripts/tmux-sessionizer"
-alias zshconfig="nvim ~/.zshrc"
+alias zshc="nvim ~/.zshrc"
+alias nvimc="cd ~/.config/nvim && nvim ."
+alias src="source ~/.zshrc"
 
 # Poetry variables
 export POETRY_VIRTUALENVS_IN_PROJECT=true
-export POETRY_VIRTUALENVS_OPTIONS_ALWAYS_COPY=true
+export POETRY_VIRTUALENVS_OPTIONS_ALWAYS_COPY=false
+export POETRY_REQUESTS_TIMEOUT=10000
 
 # Functions
 
