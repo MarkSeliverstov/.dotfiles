@@ -1,2 +1,4 @@
 [core]
 	excludesFile = .DS_Store
+[init]
+	defaultBranch = master
