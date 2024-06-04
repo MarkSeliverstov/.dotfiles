@@ -1,6 +1,6 @@
 # $HOME/.config/alacritty/alacritty.toml
 import = [
-    "~/.config/alacritty/themes/themes/kanagawa_wave.toml"
+    "~/.config/alacritty/themes/themes/alacritty-colors-dracula.yml"
 ]
 live_config_reload = true
 
@@ -19,13 +19,13 @@ decorations_theme_variant = "Dark"
 
 [font]
 size = 18
-normal.family = "Hack Nerd Font"
-bold.family = "Hack Nerd Font"
-italic.family = "Hack Nerd Font"
-bold_italic.family = "Hack Nerd Font"
+# normal.family = "Hack Nerd Font"
+# bold.family = "Hack Nerd Font"
+# italic.family = "Hack Nerd Font"
+# bold_italic.family = "Hack Nerd Font"
 
-# normal.family = "JetBrainsMono Nerd Font Mono"
-# bold.family = "JetBrainsMono Nerd Font Mono"
-# italic.family = "JetBrainsMono Nerd Font Mono"
-# bold_italic.family = "JetBrainsMono Nerd Font Mono"
+normal.family = "JetBrainsMono Nerd Font Mono"
+bold.family = "JetBrainsMono Nerd Font Mono"
+italic.family = "JetBrainsMono Nerd Font Mono"
+bold_italic.family = "JetBrainsMono Nerd Font Mono"
 
