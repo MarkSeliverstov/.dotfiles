@@ -16,6 +16,7 @@ cask "discord"
 brew "git"
 brew "wget"
 brew "tree"
+brew "bat"
 # CLI tools
 brew "tmux"
 brew "lazydocker"
