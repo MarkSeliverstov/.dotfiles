@@ -37,6 +37,10 @@ install_oh_my_zsh_plugins() {
             info "installing $plugin"
             if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/$plugin" ]; then
                 success "$plugin already installed"
+                if ! grep -q "$plugin" "$HOME/.zshrc"; then
+                    write_plugin_to_zshrc "$plugin"
+                    info "$plugin not found in zshrc, I added it for you <3"
+                fi
                 continue
             fi
 
@@ -44,11 +48,19 @@ install_oh_my_zsh_plugins() {
                 "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$plugin" \
                 2>&1 | while read -r data; do info "$data"; done
             success "$plugin installed"
+            write_plugin_to_zshrc "$plugin"
+            success "$plugin added to zshrc"
         done
         success "oh-my-zsh plugins installed"
     else
         fail "$HOME/.oh-my-zsh/plugins not found, error installing plugins"
     fi
+}
+
+write_plugin_to_zshrc() {
+  if ! grep -q "$1" "$HOME/.zshrc"; then
+    echo "plugins+=($1)" >> "$HOME/.zshrc"
+  fi
 }
 
 install_oh_my_zsh_theme() {

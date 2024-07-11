@@ -1,6 +1,6 @@
 # $HOME/.config/alacritty/alacritty.toml
 import = [
-    "~/.config/alacritty/themes/themes/alacritty-colors-dracula.yml"
+    "~/.config/alacritty/themes/themes/kanagawa_dragon.toml"
 ]
 live_config_reload = true
 
@@ -8,8 +8,8 @@ live_config_reload = true
 TERM = "xterm-256color"
 
 [window]
-opacity = 0.9
-blur = true
+# opacity = 0.95
+# blur = true
 
 padding.y = 10
 padding.x = 10
