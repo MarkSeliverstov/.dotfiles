@@ -39,7 +39,6 @@ install_oh_my_zsh_plugins() {
                 success "$plugin already installed"
                 if ! grep -q "$plugin" "$HOME/.zshrc"; then
                     write_plugin_to_zshrc "$plugin"
-                    info "$plugin not found in zshrc, I added it for you <3"
                 fi
                 continue
             fi
@@ -60,6 +59,14 @@ install_oh_my_zsh_plugins() {
 write_plugin_to_zshrc() {
   if ! grep -q "$1" "$HOME/.zshrc"; then
     echo "plugins+=($1)" >> "$HOME/.zshrc"
+    info "$1 not found in zshrc, I added it for you <3"
+  fi
+}
+
+write_theme_to_zshrc() {
+  if ! grep -q "$1" "$HOME/.zshrc"; then
+    echo "ZSH_THEME=\"$1\"" >> "$HOME/.zshrc"
+    info "$1 not found in zshrc, I added it for you <3"
   fi
 }
 
@@ -72,11 +79,15 @@ install_oh_my_zsh_theme() {
     info "Installing powerlevel10k theme"
     if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes" ]; then
         success "powerlevel10k theme already installed"
+        if ! grep -q "powerlevel10k" "$HOME/.zshrc"; then
+            write_theme_to_zshrc "powerlevel10k/powerlevel10k"
+        fi
     else
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
             "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" \
             2>&1 | while read -r data; do info "$data"; done
-        success "oh-my-zsh plugins installed"
+        success "powerlevel10k theme installed"
+        write_theme_to_zshrc "powerlevel10k/powerlevel10k"
     fi
 }
 

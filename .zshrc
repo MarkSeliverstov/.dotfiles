@@ -11,7 +11,6 @@ export CURL_CA_BUNDLE="/opt/homebrew/lib/python3.10/site-packages//avast_certifi
 export REQUESTS_CA_BUNDLE="/opt/homebrew/lib/python3.10/site-packages//avast_certifi/cacert.pem"
 export SSL_CERT_FILE="/opt/homebrew/lib/python3.10/site-packages//avast_certifi/cacert.pem"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:plugins:nvm' lazy yes # for lazy loading so terrible nvm...
 plugins=(
     git 
