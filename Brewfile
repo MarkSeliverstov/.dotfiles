@@ -14,6 +14,7 @@ cask "discord"
 
 # Basic
 brew "git"
+brew "gh"
 brew "wget"
 brew "tree"
 brew "bat"
