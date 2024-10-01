@@ -5,3 +5,7 @@ Brewfile.lock.json
 .config/pip
 .config/raycast
 .config/gcloud
+.config/btop
+.config/htop
+.config/gh**
+.config/spotify-player
