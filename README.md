@@ -18,7 +18,7 @@ it as a reference or fork it and make it your own at your own risk :smile:
 Everytime I set up a new Mac, I spend a lot of time (up to 1 day) configuring
 it. I decided to automate this process and make it easier for me to set up my
 development environment. And it definitely worked! Now I can set up my Mac in
-less than 20 minutes.
+less than 10 minutes.
 
 ### What?
 
