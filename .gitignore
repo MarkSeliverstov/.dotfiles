@@ -8,4 +8,5 @@ Brewfile.lock.json
 .config/btop
 .config/htop
 .config/gh**
+.config/neofetch
 .config/spotify-player
