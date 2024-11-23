@@ -25,6 +25,12 @@ set_defaults() {
 
     # Normal font in Alacrity terminal
     defaults write -g AppleFontSmoothing -int 0
+
+    # https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
+    defaults write com.apple.dock expose-group-apps -bool true && killall Dock
+
+    # https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
+    defaults write com.apple.spaces spans-displays -bool true && killall SystemUIServer
 }
 
 setup_macos() {
