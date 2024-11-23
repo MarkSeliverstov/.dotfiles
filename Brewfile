@@ -3,6 +3,7 @@ cask_args appdir: "/Applications"
 
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
+tap "FelixKratz/formulae"
 
 # GUI applications
 cask "raycast"
@@ -11,6 +12,7 @@ cask "telegram"
 cask "docker"
 cask "spotify"
 cask "discord"
+cask "nikitabobko/tap/aerospace"
 
 # Basic
 brew "git"
@@ -33,6 +35,8 @@ brew "task"
 cask "google-cloud-sdk"
 # other
 brew "postgresql@14"
+brew "sketchybar"
+brew "borders"
 
 # Node shit
 brew "node"
