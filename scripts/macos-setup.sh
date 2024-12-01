@@ -31,6 +31,9 @@ set_defaults() {
 
     # https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
     defaults write com.apple.spaces spans-displays -bool true && killall SystemUIServer
+
+    # Moving a macOS window by clicking anywhere on it (like on Linux)
+    defaults write -g NSWindowShouldDragOnGesture -bool true
 }
 
 setup_macos() {
