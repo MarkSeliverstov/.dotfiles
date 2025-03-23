@@ -29,4 +29,13 @@ normal.style = "Regular"
 bold.family = "JetBrainsMono Nerd Font"
 italic.family = "JetBrainsMono Nerd Font"
 bold_italic.family = "JetBrainsMono Nerd Font"
-#
+
+[keyboard]
+bindings = [
+{ key= "Left", mods= "Alt", chars= "\u001BB" } # Skip word left
+,{ key= "Right", mods= "Alt", chars= "\u001BF" } # Skip word right
+,{ key= "Left", mods= "Command", chars= "\u001bOH", mode= "AppCursor" } # Home
+,{ key= "Right", mods= "Command", chars= "\u001bOF", mode= "AppCursor" } # End
+,{ key= "Back", mods= "Command", chars= "\u0015" } # Delete line
+,{ key= "Back", mods= "Alt", chars= "\u001b\u007f" } # Delete word
+]
