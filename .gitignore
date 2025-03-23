@@ -10,3 +10,4 @@ Brewfile.lock.json
 .config/gh**
 .config/neofetch
 .config/spotify-player
+.config/karabiner
