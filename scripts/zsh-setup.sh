@@ -26,49 +26,28 @@ install_oh_my_zsh_plugins() {
     fi
 
     info "installing oh-my-zsh plugins"
-    if [ -d "$HOME/.oh-my-zsh/plugins" ]; then
+    if [ -d "$HOME/.oh-my-zsh" ]; then
+        local custom_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
         for plugin in "${ZSH_PLUGINS[@]}"; do
-            if ! ask_user "Do you want to install $plugin? [y/n]"; then
-                info "skipped installing $plugin"
-                continue
-            fi
-            
-            # check if plugin is already installed
             info "installing $plugin"
-            if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/$plugin" ]; then
+            if [ -d "$custom_dir/plugins/$plugin" ]; then
                 success "$plugin already installed"
-                if ! grep -q "$plugin" "$HOME/.zshrc"; then
-                    write_plugin_to_zshrc "$plugin"
-                fi
                 continue
             fi
 
-            git clone https://github.com/zsh-users/"$plugin" \
-                "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/$plugin" \
-                2>&1 | while read -r data; do info "$data"; done
-            success "$plugin installed"
-            write_plugin_to_zshrc "$plugin"
-            success "$plugin added to zshrc"
+            if git clone https://github.com/zsh-users/"$plugin" \
+                "$custom_dir/plugins/$plugin"; then
+                success "$plugin installed"
+            else
+                fail "error installing $plugin"
+            fi
         done
         success "oh-my-zsh plugins installed"
     else
-        fail "$HOME/.oh-my-zsh/plugins not found, error installing plugins"
+        fail "$HOME/.oh-my-zsh not found, install oh-my-zsh first"
     fi
 }
 
-write_plugin_to_zshrc() {
-  if ! grep -q "$1" "$HOME/.zshrc"; then
-    echo "plugins+=($1)" >> "$HOME/.zshrc"
-    info "$1 not found in zshrc, I added it for you <3"
-  fi
-}
-
-write_theme_to_zshrc() {
-  if ! grep -q "$1" "$HOME/.zshrc"; then
-    echo "ZSH_THEME=\"$1\"" >> "$HOME/.zshrc"
-    info "$1 not found in zshrc, I added it for you <3"
-  fi
-}
 
 install_oh_my_zsh_theme() {
     if ! ask_user "Do you want to install powerlevel10k theme? [y/n]"; then
@@ -76,18 +55,17 @@ install_oh_my_zsh_theme() {
         return
     fi
 
+    local custom_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
     info "Installing powerlevel10k theme"
-    if [ -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes" ]; then
+    if [ -d "$custom_dir/themes/powerlevel10k" ]; then
         success "powerlevel10k theme already installed"
-        if ! grep -q "powerlevel10k" "$HOME/.zshrc"; then
-            write_theme_to_zshrc "powerlevel10k/powerlevel10k"
-        fi
     else
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-            "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" \
-            2>&1 | while read -r data; do info "$data"; done
-        success "powerlevel10k theme installed"
-        write_theme_to_zshrc "powerlevel10k/powerlevel10k"
+        if git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+            "$custom_dir/themes/powerlevel10k"; then
+            success "powerlevel10k theme installed"
+        else
+            fail "error installing powerlevel10k theme"
+        fi
     fi
 }
 
