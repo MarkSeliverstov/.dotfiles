@@ -20,6 +20,7 @@ DOTFILES_TO_LINK=(
     .zshrc
     .hushlogin
     .gitconfig
+    .gitconfig-work
     .gitignore_global
 )
 

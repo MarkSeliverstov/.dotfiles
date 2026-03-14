@@ -11,3 +11,5 @@ Brewfile.lock.json
 .config/neofetch
 .config/spotify-player
 .config/karabiner
+.gitconfig-local
+.gitconfig-work-local
