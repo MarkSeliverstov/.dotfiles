@@ -12,6 +12,7 @@ unalias -a
 export ZSH="$HOME/.oh-my-zsh"
 
 zstyle ':omz:plugins:nvm' lazy yes # for lazy loading so terrible nvm...
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     git 
@@ -70,7 +71,6 @@ export CTO_LOGGING_LOG_FORMAT=PLAIN
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 export POETRY_VIRTUALENVS_OPTIONS_ALWAYS_COPY=false
 export POETRY_REQUESTS_TIMEOUT=10000
-eval "$(gh copilot alias -- zsh)"
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 
 eval "$(pyenv init --path)"
